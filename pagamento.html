@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento - WA Estampas</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #7f5af0, #ff79c6);
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .payment-container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        .payment-container h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .payment-container input[type="text"],
+        .payment-container select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 2px solid #ccc;
+            background-color: #fff;
+            color: #333;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+        .payment-container input[type="text"]:focus,
+        .payment-container select:focus {
+            border-color: #ff79c6;
+            outline: none;
+        }
+        .payment-container input[type="submit"] {
+            background-color: #ff79c6;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .payment-container input[type="submit"]:hover {
+            background-color: #ff47a3;
+        }
+        .payment-container .info-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            text-align: left;
+            display: none;
+            transition: opacity 0.3s ease;
+        }
+        .payment-container .info-box p {
+            margin: 0 0 10px;
+            font-size: 14px;
+        }
+        .payment-container .info-box.visible {
+            display: block;
+        }
+        .payment-container .icon {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+        
+        .home-button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .home-button:before {
+            content: '←'; /* Seta para voltar */
+        }
+        /* Botão Home */
+        .home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #fff;
+            font-size: 24px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .home-button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .home-button:before {
+            content: '←'; /* Seta para voltar */
+        }
+
+        @media (max-width: 480px) {
+            .payment-container {
+                padding: 20px;
+            }
+            .payment-container h2 {
+                font-size: 20px;
+            }
+            .payment-container input[type="text"],
+            .payment-container select {
+                padding: 10px;
+                font-size: 12px;
+            }
+            .payment-container input[type="submit"] {
+                padding: 10px;
+                font-size: 14px;
+            }
+        }
+    </style>
+    
+</head>
+<body>
+                <!-- Botão Home -->
+                <a href="index.html" class="home-button" title="Voltar à tela inicial"></a>
+   
+  
+    <div class="payment-container">
+        <h2>Pagamento</h2>
+        <form action="confirmacao_pagamento.html" method="POST" onsubmit="return validarFormulario()">
+            <select name="metodo_pagamento" id="metodo_pagamento" required>
+                <option value="" disabled selected>Selecione o método de pagamento</option>
+                <option value="credito">Cartão de Crédito</option>
+                <option value="debito">Cartão de Débito</option>
+                <option value="pix">Pix</option>
+            </select>
+   
+
+            <!-- Campos para pagamento via cartão -->
+            <div id="cartao-info" class="info-box">
+                <input type="text" placeholder="Nome no Cartão" name="nome_cartao" required>
+                <input type="text" placeholder="Número do Cartão" name="numero_cartao" maxlength="16" pattern="\d{16}" required>
+                <input type="text" placeholder="Validade (MM/AA)" name="validade_cartao" maxlength="5" pattern="\d{2}/\d{2}" required>
+                <input type="text" placeholder="CVV" name="cvv" maxlength="3" pattern="\d{3}" required>
+            </div>
+
+            <!-- Campo para pagamento via Pix -->
+            <div id="pix-info" class="info-box">
+                <p>Use o QR Code ou insira a chave Pix:</p>
+                <input type="text" placeholder="Chave Pix" name="chave_pix" required>
+            </div>
+
+            <input type="submit" value="Pagar">
+        </form>
+    </div>
+
+    <script>
+        const metodoPagamento = document.getElementById('metodo_pagamento');
+        const cartaoInfo = document.getElementById('cartao-info');
+        const pixInfo = document.getElementById('pix-info');
+
+        metodoPagamento.addEventListener('change', function() {
+            cartaoInfo.style.display = this.value === 'credito' || this.value === 'debito' ? 'block' : 'none';
+            pixInfo.style.display = this.value === 'pix' ? 'block' : 'none';
+        });
+
+        function validarFormulario() {
+            if (!metodoPagamento.value) {
+                alert("Por favor, selecione um método de pagamento.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>
