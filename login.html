@@ -1,0 +1,125 @@
+<!DOCTYPE html> 
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - WA Estampas</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #7f5af0, #ff79c6);
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+        .home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #fff;
+            font-size: 24px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+        .home-button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        .home-button:before {
+            content: '←';
+        }
+        .login-container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .login-container h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            box-sizing: border-box;
+        }
+        .login-container input[type="submit"] {
+            background-color: #ff79c6;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+        .login-container input[type="submit"]:hover {
+            background-color: #ff47a3;
+        }
+        .login-container p {
+            margin-top: 20px;
+        }
+        .login-container a {
+            color: #ff79c6;
+            text-decoration: none;
+        }
+        .login-container a:hover {
+            text-decoration: underline;
+        }
+        .error-message {
+            color: red;
+            font-size: 14px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="home-button" title="Voltar à tela inicial"></a>
+
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="text" placeholder="Usuário" name="username" id="username" required>
+            <input type="password" placeholder="Senha" name="password" id="password" required>
+            <p class="error-message" id="errorMsg">Usuário ou senha inválidos!</p>
+            <input type="submit" value="Entrar">
+        </form>
+        <p>Não tem uma conta? <a href="cadastrar.html">Cadastre-se</a></p>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const errorMsg = document.getElementById('errorMsg');
+
+            if (!username || !password) {
+                errorMsg.style.display = 'block';
+                event.preventDefault();
+            } else {
+                errorMsg.style.display = 'none';
+            }
+        });
+    </script>
+
+</body>
+</html>
