@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="WA Estampas - Camisas Personalizadas com designs únicos e personalizados.">
+    <meta name="keywords" content="camisas personalizadas, estampas, design, roupas personalizadas">
+    <title>WA Estampas - Camisas Personalizadas</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #7f5af0, #ff79c6);
+            margin: 0;
+            padding: 0;
+            color: #fff;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .logo img {
+            width: 150px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ff47a3;
+        }
+
+        .banner {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            margin: 10px auto;
+            max-width: 1200px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .products {
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+        }
+
+        .card {
+            background-color: #fff;
+            color: #333;
+            border-radius: 10px;
+            padding: 20px;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .buy-button {
+            background-color: #ff79c6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .buy-button:hover {
+            background-color: #ff47a3;
+        }
+
+        footer {
+            background: linear-gradient(135deg, #7f5af0, #ff79c6);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: relative; /* Alterado para relative */
+            width: 100%;
+        }
+
+        footer p {
+            text-align: center;
+            margin: 0;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .card-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="img/logomurilo.jpg" alt="Logo da WA Estampas">
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="camisas.html">Camisas</a></li>
+                <li><a href="personalizar.html">Personalize Aqui</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="banner" aria-labelledby="banner-heading">
+        <h2 id="banner-heading">Camisas Personalizadas</h2>
+        <p>Crie a camisa perfeita com designs únicos e personalizados!</p>
+    </section>
+
+    <section class="products" aria-labelledby="products-heading">
+        <h2 id="products-heading" style="display:none;">Produtos</h2>
+        <div class="card-container">
+            <div class="card">
+                <h3>Camisa Estilo Vintage</h3>
+                <p>Escolha um design clássico para seu visual.</p>
+                <button class="buy-button">Personalizar</button>
+            </div>
+            <div class="card">
+                <h3>Camisa com Nome</h3>
+                <p>Adicione seu nome ou mensagem especial.</p>
+                <button class="buy-button">Personalizar</button>
+            </div>
+            <div class="card">
+                <h3>Camisa com Logotipo</h3>
+                <p>Adicione o logotipo da sua empresa ou time.</p>
+                <button class="buy-button">Personalizar</button>
+            </div>
+            <div class="card">
+                <h3>Camisa Minimalista</h3>
+                <p>Designs simples e elegantes para qualquer ocasião.</p>
+                <button class="buy-button">Personalizar</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 WA-Estampas. Todos os direitos reservados.</p>
+        <p>Desenvolvido por Alex Reis</p>
+    </footer>
+
+</body>
+
+</html>
